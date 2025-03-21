@@ -17,5 +17,5 @@ expect class PDFGenerator() {
      * Share the generated PDF file
      * @param filePath Path to the PDF file
      */
-    fun sharePdf(filePath: String)
+    fun sharePdf(filePath: String,authority:String)
 }

@@ -227,7 +227,7 @@ actual class PDFGenerator actual constructor() {
         }
     }
 
-    actual fun sharePdf(filePath: String) {
+    actual fun sharePdf(filePath: String,authority:String) {
         try {
             val file = File(filePath)
 
@@ -236,7 +236,6 @@ actual class PDFGenerator actual constructor() {
                 return
             }
 
-            val authority = "network.chaintech.cmp.screenshot.fileprovider"
             val uri = FileProvider.getUriForFile(mContext, authority, file)
 
             val intent = Intent(Intent.ACTION_SEND).apply {

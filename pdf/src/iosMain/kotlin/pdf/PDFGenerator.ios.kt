@@ -110,7 +110,7 @@ actual class PDFGenerator actual constructor() {
         }
     }
 
-    actual fun sharePdf(filePath: String) {
+    actual fun sharePdf(filePath: String,authority:String) {
         val fileURL = NSURL.fileURLWithPath(filePath)
         val activityViewController = UIActivityViewController(
             activityItems = listOf(fileURL),

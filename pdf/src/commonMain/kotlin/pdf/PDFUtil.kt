@@ -11,12 +11,13 @@ object PDFUtil {
         fileName: String,
         content: @Composable () -> Unit,
         shareAfterCreation: Boolean = false,
+        authority:String=""
     ): String? = withContext(Dispatchers.Default) {
         val generator = PDFGenerator()
         val pdfPath = generator.createPdfFromComposable(fileName, content)
 
         if (shareAfterCreation && pdfPath != null) {
-            generator.sharePdf(pdfPath)
+            generator.sharePdf(pdfPath,authority)
         }
 
         return@withContext pdfPath
