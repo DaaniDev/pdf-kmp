@@ -13,7 +13,7 @@ A Kotlin Multiplatform library for converting Jetpack Compose UI into a PDF file
 Add the dependency to your `build.gradle.kts` file:
 
 ```kotlin
-implementation("io.github.daanidev:pdf-kmp:1.0.1")
+implementation("io.github.daanidev:pdf-kmp:1.0.2")
 implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0")
 ```
 
@@ -62,6 +62,36 @@ Additionally, add the following permissions to `AndroidManifest.xml` to allow st
 <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 ```
 
+Also, add the following inside your `res/xml` folder:
+
+```xml
+<paths xmlns:android="http://schemas.android.com/apk/res/android">
+    <external-path
+        name="external_files"
+        path="." />
+    <cache-path
+        name="shared_pdfs"
+        path="." />
+    <files-path
+        name="files"
+        path="." />
+</paths>
+```
+
+And in your `AndroidManifest.xml` file inside the `<application>` tag:
+
+```xml
+<provider
+    android:name="androidx.core.content.FileProvider"
+    android:authorities="replace with your authority"
+    android:exported="false"
+    android:grantUriPermissions="true">
+    <meta-data
+        android:name="android.support.FILE_PROVIDER_PATHS"
+        android:resource="@xml/file_paths" />
+</provider>
+```
+
 ### Best Practices
 - **Avoid LazyColumn:** Use `Column` instead to capture all items properly.
 - **Ensure Context Initialization:** Required on Android to avoid runtime errors.
@@ -77,5 +107,5 @@ This project is licensed under the MIT License.
 Contributions are welcome! Feel free to submit a pull request or report issues.
 
 ## Contact
-Feel free to open issue if you have found any.
+Feel free to open an issue if you have found any.
 
